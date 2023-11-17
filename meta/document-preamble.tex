@@ -1,0 +1,9 @@
+% STATIC DATA COMMANDS
+
+\newcommand*{\createDataCommand}[2]{
+  \expandafter\newcommand\csname stc#1\endcsname{#2}
+}
+
+\createDataCommand{Title}{Finite Difference Taylor Series}
+\createDataCommand{Author}{Corban Amouzou}
+\createDataCommand{Date}{November 2023}
