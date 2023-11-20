@@ -1,0 +1,25 @@
+\begin{definition}
+  \label{def:general-function-definition}
+  Let $f_n:\mathbb{R}\to\mathbb{R}$ be a continuous function on the interval $\left[x, x+h\right], h\in\mathbb{R}$ with a degree of $n\in\mathbb{R}$. This function can be expressed as the following for given coefficients $C_k\in\mathbb{R}$:
+  \begin{equation}
+    \label{eq:general-function-definition}
+    f_n\left(x\right)=\sum_{k=0}^{n}C_kx^k
+  \end{equation}
+\end{definition}
+\begin{definition}
+  \label{def:nth-derivative-definition}
+  The $n$th derivative of \hyperref[def:general-function-definition]{$f_n$} of degree $m$ can be expressed as the following:
+  \begin{equation}
+    \label{eq:nth-derivative-definition}
+    f^{\left(n\right)}_m\left(x\right)=\sum_{k=n}^{m}\frac{k!}{\left(k-n\right)!}C_kx^{k-n}
+  \end{equation}
+\end{definition}
+\begin{definition}
+  \label{def:forward-difference-definition}
+  \newacro{fdo}[f.d.o]{Forward Difference Operation}
+  The finite \ac{fdo} on a function $f:\mathbb{R}\to\mathbb{R}$ given by \hyperref[eq:forward-difference-definition]{Definition 1} can be expressed as the following:
+  \begin{equation}
+    \label{eq:forward-difference-definition}
+    \Delta_{h}\left[f\right]\left(x\right)=f\left(x+h\right)-f\left(x\right)
+  \end{equation}
+\end{definition}

@@ -1,0 +1,58 @@
+% Abstract environment
+\renewenvironment*{abstract}{
+  \begin{quote}
+    \noindent
+    \rule{\linewidth}{.5pt}
+    \par{\bfseries \abstractname.}
+    }{
+    \\
+    \medskip
+    \noindent
+    \rule{\linewidth}{.5pt}
+  \end{quote}
+}
+
+% Theorem and supporting environments.
+\theoremstyle{break}
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\slshape}
+\theoremsymbol{\ensuremath{\diamondsuit}}
+\theoremseparator{:}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{changebreak}
+\theoremsymbol{\ensuremath{\heartsuit}}
+\theoremindent0.5cm
+\theoremnumbering{greek}
+\newtheorem{lemma}{Lemma}
+
+\theoremindent0cm
+\theoremsymbol{\ensuremath{\spadesuit}}
+\theoremnumbering{arabic}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{nonumberplain}
+\theorembodyfont{\upshape}
+\theoremsymbol{\ensuremath{\ast}}
+\theoremseparator{:}
+\newtheorem{example}{Example}
+
+\theoremstyle{plain}
+\theoremsymbol{\ensuremath{\clubsuit}}
+\theoremseparator{.}
+\theoremprework{\bigskip}
+\theorempostwork{\bigskip}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theoremsymbol{\ensuremath{\bullet}}
+\theoremseparator{.}
+\newtheorem{remark}{Remark}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\square}}
+\theoremseparator{.}
+\newtheorem{proof}{Proof}
