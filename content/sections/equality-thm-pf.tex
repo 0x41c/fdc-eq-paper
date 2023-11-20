@@ -1,7 +1,4 @@
-\newacro{lhs}[l.h.s]{left-hand side}
-\newacro{rhs}[r.h.s]{right-hand side}
 \newacro{fdo}[f.d.o]{Forward Difference Operation}
-
 \counterwithin{equation}{theorem} % Change the numbering of equations to be relative to theorems for this section.
 \begin{theorem}
   \label{thm:equality-thm}
@@ -17,12 +14,12 @@
     \label{eq:fdo-simplification}
     \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=0}^{m}\left(C_k\left(x+h\right)^k\right)-\sum_{k=0}^{m}\left(C_kx^k\right)
   \end{equation}
-  Using the binomial theorem, we can expand $f(x+h)$ as the following:
+  Using the binomial theorem, we have this expansion of $f(x+h)$:
   \begin{equation}
     \label{eq:fdo-simplification-2}
     f\left(x+h\right)=\sum_{k=0}^{m}\left(C_k\sum_{j=0}^{k}{k\choose{j}}x^{k-j}h^j\right)
   \end{equation}
-  To simplify the \hyperref[eq:fdo-simplification]{\ac{fdo}} expression, we'll need to extract $f\left(x\right)$ from the summation. This is simply done by incrementing $j$ by $1$ and writing in the first term explicitly:
+  To simplify the \hyperref[eq:fdo-simplification]{\ac{fdo}} expression, we'll need to extract $f\left(x\right)$ from the summation. This is done simply by incrementing $j$ by $1$ in $f\left(x+h\right)$ and writing in the first term explicitly:
   \begin{equation}
     \label{eq:fdo-simplification-3}
     f\left(x+h\right)=\sum_{k=0}^{m}\left(C_k\left[x^k+\sum_{j=1}^{k}{k\choose{j}}x^{k-j}h^j\right]\right)
@@ -32,7 +29,7 @@
     \label{eq:fdo-simplification-4}
     f\left(x+h\right)=\sum_{k=0}^{m}\left(C_kx^k\right)+\sum_{k=0}^{m}\left(C_k\sum_{j=1}^{k}{k\choose{j}}x^{k-j}h^j\right)
   \end{equation}
-  This allows us to cancel out $f\left(x\right)$ in the \hyperref[eq:fdo-simplification]{\ac{fdo}} giving us the following expression:
+  This allows us to cancel out $f\left(x\right)$ in the \hyperref[eq:fdo-simplification]{\ac{fdo}} giving us the following equality:
   \begin{equation}
     \label{eq:fdo-simplification-5}
     \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=0}^{m}\left(C_k\sum_{j=1}^{k}{k\choose{j}}x^{k-j}h^j\right)
@@ -42,9 +39,12 @@
     \label{eq:fdo-simplification-6}
     \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=1}^{m}\left(C_k\sum_{j=1}^{k}{k\choose{j}}x^{k-j}h^j\right)
   \end{equation}
-  We'll now need to use the concept of expressing a polynomial function as a sum of its ordered parts to reconcile the inner summation with a derivative over the entire function.
-  \counterwithin{definition}{theorem}
-  \counterwithin{equation}{definition}
+  Once again using the binomial theorem we expand the inner summation and move the coefficient into the summation. Further, we can move $\frac{1}{j!}$ into the $h^j$ term:
+  \begin{equation}
+    \label{eq:fdo-simplification-7}
+    \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=1}^{m}\left(\sum_{j=1}^{k}\left(\frac{h^j}{j!}\right)C_k\left(\frac{k!}{\left(k-j\right)!}\right)x^{k-j}\right)
+  \end{equation}
+  We'll now need to use the concept of expressing a polynomial function as a sum of its ordered parts to reconcile the inner summation with a derivative over the entire function. To do this, we'll first need to define the ordered parts of a polynomial function. Then we'll need to define the $n$'th derivative of a polynomial function. We'll use these definitions to simplify the inner summation.\par\bigskip
   \begin{definition}
     \label{def:ordered-part-definition}
     Let $f_n$ be the notation for the $n$'th degree part of a polynomial function $f:\mathbb{R}\to\mathbb{R}$ of degree $m$. Simply put:
@@ -68,19 +68,18 @@
     The $n$th derivative of some function $f:\mathbb{R}\to\mathbb{R}$ of degree $m$ can be expressed as the following:
     \begin{equation}
       \label{eq:nth-derivative-definition}
-      f^{\left(n\right)}_m\left(x\right)=\sum_{k=n}^{m}\frac{k!}{\left(k-n\right)!}C_kx^{k-n}
+      f^{\left(n\right)}\left(x\right)=\sum_{k=n}^{m}\frac{k!}{\left(k-n\right)!}C_kx^{k-n}
     \end{equation}
   \end{definition}
-  \counterwithin{equation}{theorem}
-  Once again using the binomial theorem we expand the inner summation and move the coefficient into the summation. Further, we can move $\frac{1}{j!}$ into the $h^j$ term:
-  \begin{equation}
-    \label{eq:fdo-simplification-7}
-    \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=1}^{m}\left(\sum_{j=1}^{k}C_k\left(\frac{h^j}{j!}\right)\left(\frac{k!}{\left(k-j\right)!}\right)x^{k-j}\right)
-  \end{equation}
-  Noticing that the inner summation is equivalent to the $j$'th derivative of the $k$'th degree part of $f$, we can use \hyperref[def:ordered-part-definition]{Definition 1.2} to simplify the expression:
+  Returning to the proof, we notice that the inner summation is equivalent to the $j$'th derivative of the $k$'th degree part of $f$, so we can use \hyperref[def:ordered-part-definition]{Definition 1} to simplify the expression:
   \begin{equation}
     \label{eq:fdo-simplification-8}
-    \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=1}^{m}\left(\sum_{j=1}^{k}f^{\left(j\right)}_k\left(x\right)\left(\frac{h^j}{j!}\right)\right)
+    \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=1}^{m}\left(\sum_{j=1}^{k}\left(\frac{h^j}{j!}\right)f^{\left(j\right)}_k\left(x\right)\right)
   \end{equation}
-  Finally, we can use \hyperref[eq:ordered-part-definition-3]{Definition 1.3 (1.1.3)} to conclude that ...
+  Finally, we can use \hyperref[eq:ordered-part-definition-3]{Definition 1 (1.11)} to conclude that the inner summation is equivalent to the $k$'th derivative of $f$ multiplied by $\frac{h^k}{k!}$:
+  \begin{equation}
+    \label{eq:fdo-simplification-9}
+    \Delta_{h}\left[f\right]\left(x\right)=\sum_{k=1}^{m}\left(\frac{h^k}{k!}f^{\left(k\right)}\left(x\right)\right)
+  \end{equation}
+  \hyperref[eq:fdo-simplification-9]{Equation 1.14} is equivalent to our inductive hypothesis, so we can conclude that \hyperref[thm:equality-thm]{Theorem 1.1} is true for all $n\in\mathbb{N}$.\hfill$\square$
 \end{proof}
